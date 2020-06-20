@@ -3,14 +3,8 @@
   <entry>
     <title>Vue项目中后端返回数字（code），前端显示中文（name）</title>
     <url>/2020/06/20/hello-world/</url>
-    <content><![CDATA[<p>tags:</p>
-<ul>
-<li>Vue</li>
-<li>Array<br>categories:</li>
-<li>[技术, Vue]</li>
-</ul>
-<p>比如：现在有一个数组</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">arr: [</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0101"</span>, <span class="string">"name"</span>: <span class="string">"苹果"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0102"</span>, <span class="string">"name"</span>: <span class="string">"荔枝"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0103"</span>, <span class="string">"name"</span>: <span class="string">"甘蔗"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0104"</span>, <span class="string">"name"</span>: <span class="string">"香蕉"</span>&#125;,</span><br><span class="line">	&#123;<span class="string">"code"</span>: <span class="string">"0105"</span>, <span class="string">"name"</span>: <span class="string">"龙眼"</span>&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<p>比如：现在有一个数组</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">arr: [</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0101"</span>, <span class="string">"name"</span>: <span class="string">"苹果"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0102"</span>, <span class="string">"name"</span>: <span class="string">"荔枝"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0103"</span>, <span class="string">"name"</span>: <span class="string">"甘蔗"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0104"</span>, <span class="string">"name"</span>: <span class="string">"香蕉"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0105"</span>, <span class="string">"name"</span>: <span class="string">"龙眼"</span>&#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <p>后端返回一个值fruit: “0103”，页面上的showChinese这个值需要显示对应的中文</p>
 <h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>直接上代码</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">this.arr.forEach(e=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.code===this.fruit) &#123;</span><br><span class="line">        this.showChinese = e.name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
@@ -29,6 +23,8 @@
 <p>具体区别，可以查看<a href="https://juejin.im/post/5bc98082e51d450e4369bace" target="_blank" rel="noopener">for/for in/for of/forEach/map/filter/some/every区别对比</a></p>
 <p>try，catch写法个人感觉比较麻烦，下面是比较推荐的写法</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">this.arr.some(e=&gt;&#123;</span><br><span class="line">    <span class="built_in">return</span> e.code===this.fruit?this.showChinese = e.name:<span class="string">''</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
 
 <p>转载本博客的文章请注明原始出处和作者</p>
 ]]></content>
