@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-06-19T16:40:38.421Z</updated>
+  <updated>2020-06-20T16:48:33.894Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
+    <title>Vue项目中后端返回数字（code），前端显示中文（name）</title>
     <link href="http://yoursite.com/2020/06/20/hello-world/"/>
     <id>http://yoursite.com/2020/06/20/hello-world/</id>
     <published>2020-06-19T16:40:38.421Z</published>
-    <updated>2020-06-19T16:40:38.421Z</updated>
+    <updated>2020-06-20T16:48:33.894Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,14 @@
       
         
         
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+          &lt;p&gt;tags:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Vue&lt;/li&gt;
+&lt;li&gt;Array&lt;br&gt;categories:&lt;/li&gt;
+&lt;li&gt;[技术, Vue]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;比如：现在有一个数组&lt;/p&gt;
+&lt;figure class=&quot;highlight
         
       
     
