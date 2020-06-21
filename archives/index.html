@@ -43,6 +43,17 @@
 <body>
   <div id="app">
     
+      <canvas class="fireworks"></canvas>
+      <style>
+        .fireworks {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 99999;
+          pointer-events: none;
+        }
+      </style>
+      
       
     <main class="content on">
       <section class="outer">
@@ -234,7 +245,7 @@
 <script>
   try {
     var typed = new Typed("#subtitle", {
-      strings: ['我见众生是草木，唯你是青山', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      strings: ['我见众生是草木，唯你是青山', '人生有两种境界，痛而不言，笑而不语', '想要的都拥有，得不到的都释怀'],
       startDelay: 0,
       typeSpeed: 200,
       loop: true,
@@ -375,11 +386,12 @@
 
 <!-- ClickLove -->
 
-
-<script src="/js/clickLove.js"></script>
-
-
 <!-- ClickBoom1 -->
+
+<script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script>
+
+<script src="/js/clickBoom1.js"></script>
+
 
 <!-- ClickBoom2 -->
 
@@ -451,6 +463,23 @@
 
 
 
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=298317&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
     
   </div>
 </body>
