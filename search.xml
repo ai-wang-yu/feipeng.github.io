@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Vue项目中后端返回数字（code），前端显示中文（name）</title>
-    <url>/2020/06/20/hello-world/</url>
+    <url>/2018/06/21/page1/</url>
     <content><![CDATA[<p>比如：现在有一个数组</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">arr: [</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0101"</span>, <span class="string">"name"</span>: <span class="string">"苹果"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0102"</span>, <span class="string">"name"</span>: <span class="string">"荔枝"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0103"</span>, <span class="string">"name"</span>: <span class="string">"甘蔗"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0104"</span>, <span class="string">"name"</span>: <span class="string">"香蕉"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0105"</span>, <span class="string">"name"</span>: <span class="string">"龙眼"</span>&#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <p>后端返回一个值fruit: “0103”，页面上的showChinese这个值需要显示对应的中文</p>
@@ -21,12 +21,18 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> index = 0; index &lt; this.arr.length; index++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (this.arr[index].code===this.fruit) &#123;</span><br><span class="line">        this.name = this.arr[index].name</span><br><span class="line">        <span class="built_in">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> key <span class="keyword">in</span> this.arr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (this.arr[key].code===this.fruit) &#123;</span><br><span class="line">        this.showChinese = this.arr[key].name</span><br><span class="line">        <span class="built_in">break</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> key of this.arr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (key.code===this.fruit) &#123;</span><br><span class="line">        this.showChinese = key.name</span><br><span class="line">        <span class="built_in">break</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>具体区别，可以查看<a href="https://juejin.im/post/5bc98082e51d450e4369bace" target="_blank" rel="noopener">for/for in/for of/forEach/map/filter/some/every区别对比</a></p>
-<p>try，catch写法个人感觉比较麻烦，下面是比较推荐的写法</p>
+<h2 id="推荐的写法"><a href="#推荐的写法" class="headerlink" title="推荐的写法"></a>推荐的写法</h2><p>try，catch写法个人感觉比较麻烦，下面是比较推荐的写法</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">this.arr.some(e=&gt;&#123;</span><br><span class="line">    <span class="built_in">return</span> e.code===this.fruit?this.showChinese = e.name:<span class="string">''</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-
-
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>一般业务中这种情况都是通过select双向绑定来实现，但是作者遇到一种业务场景，后端传值code，前端需要显示，我这里用的自定义组件selsect来回显的，这个时候又要给这个元素的父类加一个点击事件，我发现呢，点击其他区域是可以触发click事件，但是自定义的select组件无法触发父类元素绑定的click事件，所以我用了some函数。后面我度娘发现可以写一个<a href="https://cn.vuejs.org/v2/api/#Vue-filter" target="_blank" rel="noopener">filter</a>函数，适合项目比较大有多个地方需要回显中文的情况。有别的更好的方法，欢迎留言评论。</p>
 <p>转载本博客的文章请注明原始出处和作者</p>
 ]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>Array</tag>
+      </tags>
   </entry>
 </search>
