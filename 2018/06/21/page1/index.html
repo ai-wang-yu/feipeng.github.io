@@ -133,7 +133,8 @@
 <h2 id="推荐的写法"><a href="#推荐的写法" class="headerlink" title="推荐的写法"></a>推荐的写法</h2><p>try，catch写法个人感觉比较麻烦，下面是比较推荐的写法</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">this.arr.some(e=&gt;&#123;</span><br><span class="line">    <span class="built_in">return</span> e.code===this.fruit?this.showChinese = e.name:<span class="string">''</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>一般业务中这种情况都是通过select双向绑定来实现，但是作者遇到一种业务场景，后端传值code，前端需要显示，我这里用的自定义组件selsect来回显的，这个时候又要给这个元素的父类加一个点击事件，我发现呢，点击其他区域是可以触发click事件，但是自定义的select组件无法触发父类元素绑定的click事件，所以我用了some函数。后面我度娘发现可以写一个<a href="https://cn.vuejs.org/v2/api/#Vue-filter" target="_blank" rel="noopener">filter</a>函数，适合项目比较大有多个地方需要回显中文的情况。有别的更好的方法，欢迎留言评论。</p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>一般业务中这种情况都是通过select双向绑定来实现，但是作者遇到一种业务场景，后端传值code，前端需要显示，我这里用的自定义组件selsect来回显的，这个时候又要给这个元素的父类加一个点击事件，我发现呢，点击其他区域是可以触发click事件，但是自定义的select组件无法触发父类元素绑定的click事件，所以我用了some函数。后面我度娘发现可以写一个<a href="https://cn.vuejs.org/v2/api/#Vue-filter" target="_blank" rel="noopener">filter</a>函数，适合项目比较大有多个地方需要回显中文的情况。<br>有别的更好的方法，欢迎留言评论。</p>
+<hr>
 <p>转载本博客的文章请注明原始出处和作者</p>
  
       <!-- reward -->
@@ -212,6 +213,20 @@
   </div>
 
    
+  <nav class="article-nav">
+    
+      <a href="/2018/06/23/page2/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Flex:1的两种用法
+          
+        </div>
+      </a>
+    
+    
+  </nav>
+
    
 <!-- valine评论 -->
 <div id="vcomments-box">
@@ -320,7 +335,7 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="https://i.loli.net/2020/06/21/olEDrx6OMhScjVI.jpg" alt="飞蓬"></a>
+    <a href="/"><img src="https://i.loli.net/2020/06/23/jMqDu9R8BZKUJfv.jpg" alt="飞蓬"></a>
   </div>
   
   <ul class="nav nav-main">

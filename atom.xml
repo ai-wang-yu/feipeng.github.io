@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-06-21T06:57:32.564Z</updated>
+  <updated>2020-06-23T15:29:27.636Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Flex:1的两种用法</title>
+    <link href="http://yoursite.com/2018/06/23/page2/"/>
+    <id>http://yoursite.com/2018/06/23/page2/</id>
+    <published>2018-06-23T13:28:58.000Z</published>
+    <updated>2020-06-23T15:29:27.636Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、横向用法&quot;&gt;&lt;a href=&quot;#一、横向用法&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Css" scheme="http://yoursite.com/categories/Css/"/>
+    
+    
+      <category term="Flex" scheme="http://yoursite.com/tags/Flex/"/>
+    
+      <category term="Css" scheme="http://yoursite.com/tags/Css/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Vue项目中后端返回数字（code），前端显示中文（name）</title>
     <link href="http://yoursite.com/2018/06/21/page1/"/>
     <id>http://yoursite.com/2018/06/21/page1/</id>
     <published>2018-06-21T15:28:58.000Z</published>
-    <updated>2020-06-21T06:57:32.564Z</updated>
+    <updated>2020-06-23T15:29:14.866Z</updated>
     
     <summary type="html">
     
