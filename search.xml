@@ -1,43 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Flex:1的两种用法</title>
-    <url>/2018/06/23/page2/</url>
-    <content><![CDATA[<h2 id="一、横向用法"><a href="#一、横向用法" class="headerlink" title="一、横向用法"></a>一、横向用法</h2><p>日常项目中要实现下面这样的效果是不好实现的，左侧内容是跟随屏幕变化的无法给固定的宽度，用百分比或者rem也不行，右侧需要完全占据剩余区域，这样点击右侧任何一个地方都可以触发下拉或者输入</p>
-<p><img src="https://i.loli.net/2020/06/23/dM4cr8QOnhsCElY.png" alt="横向效果图"></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"display:flex;justify-content: flex-start;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>资料寄送地址<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"flex:1"</span>&gt;</span>下拉框<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>效果图内部样式就不写了，垂直居中可以使用flex的另一个属性</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">align-items</span>: <span class="selector-tag">center</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="二、竖向用法"><a href="#二、竖向用法" class="headerlink" title="二、竖向用法"></a>二、竖向用法</h2><p>日常项目中很多按钮要求居于页面底部，但是现在屏幕尺寸很多，给出固定的高度是不行的，使用媒体查询又太麻烦了</p>
-<p><img src="https://i.loli.net/2020/06/23/p3RPuzLmAYilaDs.png" alt="竖向效果图"></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"display: flex;flex-direction: column;height: 100%;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"flex:1"</span>&gt;</span>上方<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"height: 40px;margin-bottom: 60px;"</span>&gt;</span>下方button<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>flex-direction属性 决定主轴(一般是x轴)的方向，即项目排列的方向 </p>
-<ul>
-<li><strong>row</strong>:主轴为水平方向，项目沿主轴从<strong>左至右</strong>排列 </li>
-<li><strong>column</strong>：主轴为竖直方向，项目沿主轴<strong>从上至下</strong>排列 </li>
-<li><strong>row-reverse</strong>：主轴水平，项目从<strong>右至左</strong>排列，与row反向 </li>
-<li><strong>column-reverse</strong>：主轴竖直，项目从<strong>下至</strong>上排列，与column反向 </li>
-</ul>
-<p>需要注意的是下方button块需要一个固定的高度，父容器需要设置高度100%。</p>
-<p>Flex布局请看<a href="https://www.jianshu.com/p/300575490dcf" target="_blank" rel="noopener">总结flex布局，一眼看懂</a><br>有别的更好的方法，欢迎留言评论。</p>
-<hr>
-<p>转载本博客的文章请注明原始出处和作者</p>
-]]></content>
-      <categories>
-        <category>Css</category>
-      </categories>
-      <tags>
-        <tag>Flex</tag>
-        <tag>Css</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Vue项目中后端返回数字（code），前端显示中文（name）</title>
     <url>/2018/06/21/page1/</url>
-    <content><![CDATA[<p>比如：现在有一个数组</p>
+    <content><![CDATA[<p>介绍了数组循环的几种方法，三元表达式优化</p>
+<a id="more"></a>
+
+<p>比如：现在有一个数组</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">arr: [</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0101"</span>, <span class="string">"name"</span>: <span class="string">"苹果"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0102"</span>, <span class="string">"name"</span>: <span class="string">"荔枝"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0103"</span>, <span class="string">"name"</span>: <span class="string">"甘蔗"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0104"</span>, <span class="string">"name"</span>: <span class="string">"香蕉"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0105"</span>, <span class="string">"name"</span>: <span class="string">"龙眼"</span>&#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <p>后端返回一个值fruit: “0103”，页面上的showChinese这个值需要显示对应的中文</p>
 <h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>直接上代码</p>
@@ -68,6 +37,43 @@
       <tags>
         <tag>Vue</tag>
         <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Flex:1的两种用法</title>
+    <url>/2018/06/23/page2/</url>
+    <content><![CDATA[<p>介绍Flex:1的两种用法</p>
+<a id="more"></a>
+
+<h2 id="一、横向用法"><a href="#一、横向用法" class="headerlink" title="一、横向用法"></a>一、横向用法</h2><p>日常项目中要实现下面这样的效果是不好实现的，左侧内容是跟随屏幕变化的无法给固定的宽度，用百分比或者rem也不行，右侧需要完全占据剩余区域，这样点击右侧任何一个地方都可以触发下拉或者输入</p>
+<p><img src="https://pic.downk.cc/item/5ef4c8df14195aa5945e6572.png" alt="横向效果图"></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"display:flex;justify-content: flex-start;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>资料寄送地址<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"flex:1"</span>&gt;</span>下拉框<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>效果图内部样式就不写了，垂直居中可以使用flex的另一个属性</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">align-items</span>: <span class="selector-tag">center</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、竖向用法"><a href="#二、竖向用法" class="headerlink" title="二、竖向用法"></a>二、竖向用法</h2><p>日常项目中很多按钮要求居于页面底部，但是现在屏幕尺寸很多，给出固定的高度是不行的，使用媒体查询又太麻烦了</p>
+<p><img src="https://pic.downk.cc/item/5ef4c8f114195aa5945e6c0a.png" alt="竖向效果图"></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"display: flex;flex-direction: column;height: 100%;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"flex:1"</span>&gt;</span>上方<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"height: 40px;margin-bottom: 60px;"</span>&gt;</span>下方button<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>flex-direction属性 决定主轴(一般是x轴)的方向，即项目排列的方向 </p>
+<ul>
+<li><strong>row</strong>:主轴为水平方向，项目沿主轴从<strong>左至右</strong>排列 </li>
+<li><strong>column</strong>：主轴为竖直方向，项目沿主轴<strong>从上至下</strong>排列 </li>
+<li><strong>row-reverse</strong>：主轴水平，项目从<strong>右至左</strong>排列，与row反向 </li>
+<li><strong>column-reverse</strong>：主轴竖直，项目从<strong>下至</strong>上排列，与column反向 </li>
+</ul>
+<p>需要注意的是下方button块需要一个固定的高度，父容器需要设置高度100%。</p>
+<p>Flex布局请看<a href="https://www.jianshu.com/p/300575490dcf" target="_blank" rel="noopener">总结flex布局，一眼看懂</a><br>有别的更好的方法，欢迎留言评论。</p>
+<hr>
+<p>转载本博客的文章请注明原始出处和作者</p>
+]]></content>
+      <categories>
+        <category>Css</category>
+      </categories>
+      <tags>
+        <tag>Flex</tag>
+        <tag>Css</tag>
       </tags>
   </entry>
 </search>
