@@ -1,45 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Vue项目中后端返回数字（code），前端显示中文（name）</title>
-    <url>/2020/06/21/page1/</url>
-    <content><![CDATA[<p>介绍了数组循环的几种方法，三元表达式优化</p>
-<a id="more"></a>
-
-<p>比如：现在有一个数组</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">arr: [</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0101"</span>, <span class="string">"name"</span>: <span class="string">"苹果"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0102"</span>, <span class="string">"name"</span>: <span class="string">"荔枝"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0103"</span>, <span class="string">"name"</span>: <span class="string">"甘蔗"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0104"</span>, <span class="string">"name"</span>: <span class="string">"香蕉"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0105"</span>, <span class="string">"name"</span>: <span class="string">"龙眼"</span>&#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>后端返回一个值fruit: “0103”，页面上的showChinese这个值需要显示对应的中文</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>直接上代码</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">this.arr.forEach(e=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.code===this.fruit) &#123;</span><br><span class="line">        this.showChinese = e.name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>这样就可以显示对应的中文了，但是呢写法比较low，所以改进一下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">this.arr.forEach(e=&gt;&#123;</span><br><span class="line">    e.code===this.fruit?this.showChinese = e.name:<span class="string">''</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">this.arr.forEach(e=&gt;&#123;</span><br><span class="line">    e.code===this.fruit?this.showChinese = e.name:<span class="string">''</span></span><br><span class="line">    console.log(e.name, <span class="string">'e.name'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="打印结果"><a href="#打印结果" class="headerlink" title="打印结果"></a>打印结果</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">苹果 e.name</span><br><span class="line">荔枝 e.name</span><br><span class="line">甘蔗 e.name</span><br><span class="line">香蕉 e.name</span><br><span class="line">龙眼 e.name</span><br></pre></td></tr></table></figure>
-
-<p>我们可以看到，循环执行了5遍，当循环的数组比较大时，就会有问题了，那可不可以跳出循环呢</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">this.arr.forEach(e=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.code===this.fruit) &#123;</span><br><span class="line">        this.showChinese = e.name</span><br><span class="line">        <span class="built_in">break</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>这是写法是错误的，项目编译的时候就会报错，foreach中无法用break跳出循环，for循环，for in循环，for of循环是可行的</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> index = 0; index &lt; this.arr.length; index++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (this.arr[index].code===this.fruit) &#123;</span><br><span class="line">        this.name = this.arr[index].name</span><br><span class="line">        <span class="built_in">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> key <span class="keyword">in</span> this.arr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (this.arr[key].code===this.fruit) &#123;</span><br><span class="line">        this.showChinese = this.arr[key].name</span><br><span class="line">        <span class="built_in">break</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> key of this.arr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (key.code===this.fruit) &#123;</span><br><span class="line">        this.showChinese = key.name</span><br><span class="line">        <span class="built_in">break</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>具体区别，可以查看<a href="https://juejin.im/post/5bc98082e51d450e4369bace" target="_blank" rel="noopener">for/for in/for of/forEach/map/filter/some/every区别对比</a></p>
-<h2 id="推荐的写法"><a href="#推荐的写法" class="headerlink" title="推荐的写法"></a>推荐的写法</h2><p>try，catch写法个人感觉比较麻烦，下面是比较推荐的写法</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">this.arr.some(e=&gt;&#123;</span><br><span class="line">    <span class="built_in">return</span> e.code===this.fruit?this.showChinese = e.name:<span class="string">''</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>一般业务中这种情况都是通过select双向绑定来实现，但是作者遇到一种业务场景，后端传值code，前端需要显示，我这里用的自定义组件selsect来回显的，这个时候又要给这个元素的父类加一个点击事件，我发现呢，点击其他区域是可以触发click事件，但是自定义的select组件无法触发父类元素绑定的click事件，所以我用了some函数。后面我度娘发现可以写一个<a href="https://cn.vuejs.org/v2/api/#Vue-filter" target="_blank" rel="noopener">filter</a>函数，适合项目比较大有多个地方需要回显中文的情况。<br>有别的更好的方法，欢迎留言评论。</p>
-<hr>
-<p>欢迎留言评论交流<br>转载本博客的文章请注明原始出处和作者</p>
-]]></content>
-      <categories>
-        <category>Vue</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-        <tag>Array</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Flex:1的两种用法</title>
     <url>/2020/06/23/page2/</url>
     <content><![CDATA[<p>介绍Flex:1的两种用法</p>
@@ -114,10 +75,10 @@
 <li>开始时间与结束时间最多相差一个月</li>
 <li>隐藏要求，结束时间不能小于且不能等于开始时间</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let end_date &#x3D; moment().format(&quot;YYYY-MM-DD&quot;) &#x2F;&#x2F; 2020-07-01</span><br><span class="line">let start_date &#x3D; moment(end_date).subtract(1, &#39;year&#39;).format(&quot;YYYY-MM-DD&quot;) &#x2F;&#x2F; 2019-07-01</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> end_date = moment().format(<span class="string">"YYYY-MM-DD"</span>) <span class="comment">// 2020-07-01</span></span><br><span class="line"><span class="keyword">let</span> start_date = moment(end_date).subtract(<span class="number">1</span>, <span class="string">'year'</span>).format(<span class="string">"YYYY-MM-DD"</span>) <span class="comment">// 2019-07-01</span></span><br></pre></td></tr></table></figure>
 
 <p>这样可以控制第一个条件，第二个条件会出现<strong>发现问题</strong>那样的情况，首先我们可以通过diff()函数取得两个时间月份month的差，然后在去判断两个时间天数days的差，月份差为1，天数差小于等于31就是符合条件的，但是好像有点麻烦了，下面看代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let start_date &#x3D; &#39;2020-06-01&#39; &#x2F;&#x2F; 输入开始时间</span><br><span class="line">let end_date1 &#x3D; &#39;2020-07-01&#39; &#x2F;&#x2F; 输入结束时间</span><br><span class="line">let end_date2 &#x3D; &#39;2020-07-02&#39; &#x2F;&#x2F; 输入结束时间</span><br><span class="line">let end_date3 &#x3D; &#39;2020-05-31&#39; &#x2F;&#x2F; 输入结束时间</span><br><span class="line">let month1 &#x3D; moment(end_date1).subtract(1, &#39;days&#39;).diff(start_date, &#39;months&#39;) &#x2F;&#x2F; 输出0</span><br><span class="line">let month2 &#x3D; moment(end_date2).subtract(1, &#39;days&#39;).diff(start_date, &#39;months&#39;) &#x2F;&#x2F; 输出1</span><br><span class="line">当month大于0的时候，就是不符合条件</span><br><span class="line">let day1 &#x3D; moment(end_date3).diff(start_date, &#39;days&#39;) &#x2F;&#x2F; 输出-1</span><br><span class="line">当day小于1的时候，就是不符合条件</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> start_date = <span class="string">'2020-06-01'</span> <span class="comment">// 输入开始时间</span></span><br><span class="line"><span class="keyword">let</span> end_date1 = <span class="string">'2020-07-01'</span> <span class="comment">// 输入结束时间</span></span><br><span class="line"><span class="keyword">let</span> end_date2 = <span class="string">'2020-07-02'</span> <span class="comment">// 输入结束时间</span></span><br><span class="line"><span class="keyword">let</span> end_date3 = <span class="string">'2020-05-31'</span> <span class="comment">// 输入结束时间</span></span><br><span class="line"><span class="keyword">let</span> month1 = moment(end_date1).subtract(<span class="number">1</span>, <span class="string">'days'</span>).diff(start_date, <span class="string">'months'</span>) <span class="comment">// 输出0</span></span><br><span class="line"><span class="keyword">let</span> month2 = moment(end_date2).subtract(<span class="number">1</span>, <span class="string">'days'</span>).diff(start_date, <span class="string">'months'</span>) <span class="comment">// 输出1</span></span><br><span class="line">当month大于<span class="number">0</span>的时候，就是不符合条件</span><br><span class="line"><span class="keyword">let</span> day1 = moment(end_date3).diff(start_date, <span class="string">'days'</span>) <span class="comment">// 输出-1</span></span><br><span class="line">当day小于<span class="number">1</span>的时候，就是不符合条件</span><br></pre></td></tr></table></figure>
 
 <p>更多内容可以查看<a href="http://momentjs.cn/" target="_blank" rel="noopener">moment.js中文网</a></p>
 <hr>
@@ -129,6 +90,45 @@
       <tags>
         <tag>js</tag>
         <tag>moment</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue项目中后端返回数字（code），前端显示中文（name）</title>
+    <url>/2020/06/21/page1/</url>
+    <content><![CDATA[<p>介绍了数组循环的几种方法，三元表达式优化</p>
+<a id="more"></a>
+
+<p>比如：现在有一个数组</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">arr: [</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0101"</span>, <span class="string">"name"</span>: <span class="string">"苹果"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0102"</span>, <span class="string">"name"</span>: <span class="string">"荔枝"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0103"</span>, <span class="string">"name"</span>: <span class="string">"甘蔗"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0104"</span>, <span class="string">"name"</span>: <span class="string">"香蕉"</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"code"</span>: <span class="string">"0105"</span>, <span class="string">"name"</span>: <span class="string">"龙眼"</span>&#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>后端返回一个值fruit: “0103”，页面上的showChinese这个值需要显示对应的中文</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>直接上代码</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">this</span>.arr.forEach(<span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.code===<span class="keyword">this</span>.fruit) &#123;</span><br><span class="line">        <span class="keyword">this</span>.showChinese = e.name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以显示对应的中文了，但是呢写法比较low，所以改进一下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">this</span>.arr.forEach(<span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    e.code===<span class="keyword">this</span>.fruit?<span class="keyword">this</span>.showChinese = e.name:<span class="string">''</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">this.arr.forEach(e=&gt;&#123;</span><br><span class="line">    e.code===this.fruit?this.showChinese = e.name:<span class="string">''</span></span><br><span class="line">    console.log(e.name, <span class="string">'e.name'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="打印结果"><a href="#打印结果" class="headerlink" title="打印结果"></a>打印结果</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">苹果 e.name</span><br><span class="line">荔枝 e.name</span><br><span class="line">甘蔗 e.name</span><br><span class="line">香蕉 e.name</span><br><span class="line">龙眼 e.name</span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到，循环执行了5遍，当循环的数组比较大时，就会有问题了，那可不可以跳出循环呢</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">this</span>.arr.forEach(<span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.code===<span class="keyword">this</span>.fruit) &#123;</span><br><span class="line">        <span class="keyword">this</span>.showChinese = e.name</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这是写法是错误的，项目编译的时候就会报错，foreach中无法用break跳出循环，for循环，for in循环，for of循环是可行的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index = <span class="number">0</span>; index &lt; <span class="keyword">this</span>.arr.length; index++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.arr[index].code===<span class="keyword">this</span>.fruit) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="keyword">this</span>.arr[index].name</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> <span class="keyword">this</span>.arr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.arr[key].code===<span class="keyword">this</span>.fruit) &#123;</span><br><span class="line">        <span class="keyword">this</span>.showChinese = <span class="keyword">this</span>.arr[key].name</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">of</span> <span class="keyword">this</span>.arr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (key.code===<span class="keyword">this</span>.fruit) &#123;</span><br><span class="line">        <span class="keyword">this</span>.showChinese = key.name</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体区别，可以查看<a href="https://juejin.im/post/5bc98082e51d450e4369bace" target="_blank" rel="noopener">for/for in/for of/forEach/map/filter/some/every区别对比</a></p>
+<h2 id="推荐的写法"><a href="#推荐的写法" class="headerlink" title="推荐的写法"></a>推荐的写法</h2><p>try，catch写法个人感觉比较麻烦，下面是比较推荐的写法</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">this.arr.some(e=&gt;&#123;</span><br><span class="line">    <span class="built_in">return</span> e.code===this.fruit?this.showChinese = e.name:<span class="string">''</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>一般业务中这种情况都是通过select双向绑定来实现，但是作者遇到一种业务场景，后端传值code，前端需要显示，我这里用的自定义组件selsect来回显的，这个时候又要给这个元素的父类加一个点击事件，我发现呢，点击其他区域是可以触发click事件，但是自定义的select组件无法触发父类元素绑定的click事件，所以我用了some函数。后面我度娘发现可以写一个<a href="https://cn.vuejs.org/v2/api/#Vue-filter" target="_blank" rel="noopener">filter</a>函数，适合项目比较大有多个地方需要回显中文的情况。<br>有别的更好的方法，欢迎留言评论。</p>
+<hr>
+<p>欢迎留言评论交流<br>转载本博客的文章请注明原始出处和作者</p>
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
 </search>
